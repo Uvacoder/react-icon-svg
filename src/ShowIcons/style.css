@@ -1,0 +1,31 @@
+.catButton {
+	border: none;
+	color: #555;
+	background-color: #bbb;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+	flex-grow: 1;
+}
+.catButton:hover {
+	border: none;
+	color: #fff;
+	background-color: #1a1a1a;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+	box-shadow: 0 5px 15px 5px #aaaaaa;
+	flex-grow: 1;
+	fill: #fff;
+}
+.docContainer {
+	color: #333;
+	width: 90vw;
+	text-align: left;
+	margin: 10;
+	padding: 50;
+	background-color: #fff;
+	/* flex-grow: 1; */
+	border-radius: 10px;
+	box-shadow: 0px 6px 8px  #aaaaaa ;
+}
