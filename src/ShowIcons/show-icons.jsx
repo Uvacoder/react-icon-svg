@@ -63,7 +63,7 @@ class Icons extends Component {
 					<h3>
 						<ol>
 							<li>Install</li>{"Download "}
-							<a href="https://github.com/adhemukhlis/react-icon-svg">
+							<a target="blank" href="https://github.com/adhemukhlis/react-icon-svg/releases/download/v2.1/react-icon-svg.js">
 								<b>react-icon-svg.js</b>
 							</a>{" then place the file on your ReactJS Project"}
 							<li>Implement</li>
