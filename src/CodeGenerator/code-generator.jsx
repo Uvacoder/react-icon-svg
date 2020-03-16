@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {IcLightLemon, IcRegularLemon, IcSolidLemon, IcDuotoneLemon} from "../release/react-icon-svg";
 class Body extends Component {
 	state = {
 		dataContent: [],
@@ -39,7 +40,6 @@ class Body extends Component {
 		const { forDoc, svgjs } = this.state;
 		const files = e.target.files;
 		console.log( Object.keys( files ).length );
-	
 			Object
 				.keys( files )
 				.forEach(i => {
@@ -147,6 +147,11 @@ class Body extends Component {
 						: ".svg"} onChange={this.processEx} multiple/><br/>
 					<button onClick={this.clearWindow}>Clear</button><br/>
 					<button onClick={this.downloadTxtFile}>Download</button>
+					<br/>
+					<IcLightLemon heigt="50" width="50" fill="#333" />
+					<IcRegularLemon heigt="50" width="50" fill="#333" />
+					<IcSolidLemon heigt="50" width="50" fill="#333" />
+					<IcDuotoneLemon heigt="50" width="50" fill="#333" />
 				</div>
 			</div>
 		)
