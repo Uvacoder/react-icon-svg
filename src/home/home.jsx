@@ -1,70 +1,34 @@
 import React, { useState } from 'react';
-import {
-	Layout,
-	Menu,
-	Breadcrumb,
-	Modal,
-	Button,
-	Tooltip,
-	Input,
-	Space
-} from 'antd';
-import { SmileOutlined, DownloadOutlined } from '@ant-design/icons';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 import './home.css';
-import FileSaver from 'file-saver';
-import CardIcon from "../component/card-icon";
-// import metaData from '../data/icons.json'
+import ContainerDimensions from 'react-container-dimensions';
+import LazyGrid from '../component/lazy-grid';
 // const {TextArea}=Input
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-// const getObjectFilter = ({ obj, include, exclude }) => {
-// 	Object.filter = ( obj, predicate ) => Object
-// 		.keys( obj )
-// 		.filter(key => predicate( key ))
+const publisherList = {
+"fa":"Font Awesome"
+}
+// const getObjectFilter = ({ obj, include, exclude }) => { 	Object.filter = (
+// obj, predicate ) => Object 		.keys( obj ) 		.filter(key => predicate( key ))
 // 		.reduce(( res, key ) => Object.assign(res, {[ key ]: obj[key]}), { });
-// 	return !!include ? Object.filter(obj, attr => include.includes( attr )) : !!exclude ? Object.filter(obj, attr => !exclude.includes( attr )) : {};
-// }
+// 	return !!include ? Object.filter(obj, attr => include.includes( attr )) :
+// !!exclude ? Object.filter(obj, attr => !exclude.includes( attr )) : {}; }
 const Home = ( ) => {
-	const [result,
-		setResult] = useState( "" );
+
 	const [collapsed,
 		setCollapsed] = useState( false );
-	const [isModalVisible,
-		setIsModalVisible] = useState( false );
-
-	const [color,
-		setColor] = useState( "#000000" );
-
-	// const metadata = Object.keys(metaData)
-	// console.log(metadata.length)
-	// let tmp = []
-	// metadata.forEach(name => {
-	// 	const tmp2 = `"${name}":${JSON.stringify(getObjectFilter({obj:metaData[name],include:["search","styles","unicode","label"]}))}`
-	// 	tmp.push(tmp2)
-	// });
-	// const stringRes = "{"+tmp+"}"
-	// setTimeout(()=>setResult(stringRes),10000)
-
-
-
+		const [tab,
+			setTab] = useState( 'fa-brands' );
 	const onCollapse = collapsed => {
 		console.log( collapsed );
 		setCollapsed( collapsed );
 	};
-
-	const showModal = ( ) => {
-		setIsModalVisible( true );
-	};
-
-	const handleOk = ( ) => {
-		setIsModalVisible( false );
-	};
-
-	const handleCancel = ( ) => {
-		setIsModalVisible( false );
-	};
-	const downloadHandler = ( ) => FileSaver.saveAs( `https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg`, "500px.svg" );
-
+	const onMenuClick=({key})=>{
+		setTab(key)
+	}
+	const [publisher,iconStyle]=tab.split("-")
 	return (
 		<Layout style={{
 			minHeight: '100vh'
@@ -77,14 +41,13 @@ const Home = ( ) => {
 					background: 'rgba(255, 255, 255, 0.3)'
 				}}>RIS</div>
 				<Menu theme="dark" defaultSelectedKeys={[ '1' ]} mode="inline">
-
 					<SubMenu key="sub1" icon={< SmileOutlined />} title="Font Awesome">
-						<Menu.Item key="1">Brands</Menu.Item>
-						<Menu.Item key="2">Duotone</Menu.Item>
-						<Menu.Item key="3">Light</Menu.Item>
-						<Menu.Item key="4">Regular</Menu.Item>
-						<Menu.Item key="5">Solid</Menu.Item>
-						<Menu.Item key="6">Thin</Menu.Item>
+						<Menu.Item key="fa-brands" onClick={onMenuClick}>Brands</Menu.Item>
+						<Menu.Item key="fa-duotone" onClick={onMenuClick}>Duotone</Menu.Item>
+						<Menu.Item key="fa-light" onClick={onMenuClick}>Light</Menu.Item>
+						<Menu.Item key="fa-regular" onClick={onMenuClick}>Regular</Menu.Item>
+						<Menu.Item key="fa-solid" onClick={onMenuClick}>Solid</Menu.Item>
+						<Menu.Item key="fa-thin" onClick={onMenuClick}>Thin</Menu.Item>
 					</SubMenu>
 				</Menu>
 			</Sider>
@@ -98,84 +61,22 @@ const Home = ( ) => {
 					<Breadcrumb style={{
 						margin: '16px 0'
 					}}>
-						<Breadcrumb.Item>Font Awesome</Breadcrumb.Item>
-						<Breadcrumb.Item>Brands</Breadcrumb.Item>
+						<Breadcrumb.Item>{publisherList[publisher]}</Breadcrumb.Item>
+						<Breadcrumb.Item>{iconStyle}</Breadcrumb.Item>
 					</Breadcrumb>
-					<Modal
-						title="Basic Modal"
-						visible={isModalVisible}
-						onOk={handleOk}
-						onCancel={handleCancel}>
-						<div
-							style={{
-							backgroundColor: color || "#000000",
-                            margin:'0 0 24px 0',
-							width: '100%',
-							height: '20vh',
-							backgroundSize: '10vh',
-							backgroundOrigin: 'padding-box',
-							mask: 'url("https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg") no-repeat center',
-							'-webkit-mask': 'url("https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg") no-repeat center'
-						}}/>
-						<Tooltip placement="bottom" title="Download SVG">
-							<Space><Input
-								placeholder="color hex/rgb/rgba"
-								onChange={e => setColor( e.target.value )}/>
-								<Button
-									type="primary"
-									onClick={downloadHandler}
-									icon={< DownloadOutlined />}
-									size='middle'/></Space>
-						</Tooltip>
-
-					</Modal>
 					<div
 						style={{
-						width: '100%',
 						display: 'flex',
-						flexDirection: 'column',
-						textAlign: 'center',
-						flexFlow: 'wrap'
+						width: '100%',
+						height: '100%'
 					}}>
-						<CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/>
-						<CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/><CardIcon
-							onClick={showModal}
-							src="https://raw.githubusercontent.com/adhemukhlis/react-icon-svg/master/src/svgs/brands/500px.svg"/>
-
+						<div style={{
+							flex: 1,
+							width: '100%'
+						}}>
+							<ContainerDimensions>{({ height, width }) => ( <LazyGrid width={width} height={height} tabSelect="brands"/> )}</ContainerDimensions>
+						</div>
 					</div>
-					{/* <TextArea rows={4} value={result}/> */}
 				</Content>
 				<Footer style={{
 					textAlign: 'center'

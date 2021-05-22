@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // import IconGeneratorCode from './CodeGenerator/code-generator';
 // import IconShow from './ShowIcons/show-icons';
 import Home from './home/home';
+// import ReVir from './react-virtualized/app';
 
 import * as serviceWorker from './serviceWorker';
 
