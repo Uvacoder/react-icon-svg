@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// import './main.css'
-// import IconGeneratorCode from './CodeGenerator/code-generator';
-// import IconShow from './ShowIcons/show-icons';
-import Home from './home/home';
-// import ReVir from './react-virtualized/app';
+import App from './App'
 
 import * as serviceWorker from './serviceWorker';
 
 
-ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 //**untuk duotone icon */
 //npx @svgr/cli -d ./dir_source ./dir_dest 

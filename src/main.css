@@ -1,5 +1,15 @@
 body,
 html {
 	margin: 0;
-	padding: p;
+	padding: 0;
+	-ms-overflow-style:none;
 }
+::-webkit-scrollbar {
+	display: none;
+  }
+  
+  ::-webkit-scrollbar-button {
+	display: none;
+  }
+  
+

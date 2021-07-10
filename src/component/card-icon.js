@@ -3,12 +3,12 @@ import injectSheet from 'react-jss';
 import { Modal, Tooltip, Space, Button } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 import FileSaver from 'file-saver';
-const onClick = ({ name, downloadHandler, src }) => Modal.info({title: name, content: (
+const onClick = ({ name, downloadHandler, src }) => Modal.info({title: name, closable:true,content: (
 		<Fragment>
+			<div style={{backgroundColor:'#C9FFFF',width:'100%',padding:'16px', borderRadius:'16px',margin: '0 0 24px 0',}}>
 			<div
 				style={{
 				backgroundColor: "#000000",
-				margin: '0 0 24px 0',
 				width: '100%',
 				height: '20vh',
 				backgroundSize: '10vh',
@@ -16,6 +16,8 @@ const onClick = ({ name, downloadHandler, src }) => Modal.info({title: name, con
 				mask: `url(${ src }) no-repeat center`,
 				'-webkit-mask': `url(${ src }) no-repeat center`
 			}}/>
+			</div>
+			
 			<Tooltip placement="bottom" title="Download SVG">
 				<Space>
 					<Button
